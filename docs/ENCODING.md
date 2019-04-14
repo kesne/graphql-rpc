@@ -1,6 +1,6 @@
 # Binary Encoding
 
-Currently, all binary messages are encoded as proto3 protocol buffers.
+Currently, all binary messages are encoded as version 3 protocol buffers.
 
 ## Requests
 
