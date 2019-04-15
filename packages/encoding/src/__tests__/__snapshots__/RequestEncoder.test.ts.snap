@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`encoding minimal encoding query "all.graphql" 1`] = `
+Object {
+  "compressedDifference": "4.29%",
+  "difference": "0.00%",
+  "size": 67,
+}
+`;
+
+exports[`encoding minimal encoding query "nested.graphql" 1`] = `
+Object {
+  "compressedDifference": "-192.86%",
+  "difference": "0.00%",
+  "size": 205,
+}
+`;
+
+exports[`encoding minimal encoding query "one.graphql" 1`] = `
+Object {
+  "compressedDifference": "36.59%",
+  "difference": "0.00%",
+  "size": 26,
+}
+`;

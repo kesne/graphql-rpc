@@ -1,6 +1,16 @@
-# Binary Encoding
+# Encoding
 
-Currently, all binary messages are encoded as version 3 protocol buffers.
+This handles the binary encoding for GraphQL RPC messages. Currently, all binary messages are encoded as version 3 protocol buffers.
+
+## Goals
+
+- Significantly smaller than JSON request body.
+- Well-defined process for encoding / decoding.
+- Able to easily implement for other languages.
+- Request and Response binary formats to _not_ need to match.
+  - The structure of the request and response are sufficiently different
+- Encoding must be resilient to Schema changes and mismatches. Documents from old versions of a Schema should usable in a new version of the Schema and vice versa.
+- Encodings do not need to be useful on their own. Unlike JSON, we don’t expect to be able to parse the binary without additional information. It’s okay to require the Schema to parse he JSON.
 
 ## Requests
 

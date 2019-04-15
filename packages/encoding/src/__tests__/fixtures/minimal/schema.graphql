@@ -1,0 +1,11 @@
+type Query {
+    message: String!
+    me: User
+}
+
+type User {
+    id: Int!
+    name: String!
+    email: String!
+    friends: [User!]!
+}

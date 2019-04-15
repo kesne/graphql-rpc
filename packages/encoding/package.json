@@ -1,0 +1,12 @@
+{
+  "name": "@graphql-rpc/encoding",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "author": "Jordan Gensler <jordangens@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/graphql": "^14.2.0",
+    "graphql": "^14.2.1",
+    "graphql-query-compress": "^1.2.1"
+  }
+}

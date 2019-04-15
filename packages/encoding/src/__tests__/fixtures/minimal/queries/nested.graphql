@@ -1,0 +1,43 @@
+query {
+    message
+    me {
+        id
+        name
+        email
+        friends {
+            id
+            name
+            email
+            friends {
+                id
+                name
+                email
+                friends {
+                    id
+                    name
+                    email
+                    friends {
+                        id
+                        name
+                        email
+                        friends {
+                            id
+                            name
+                            email
+                            friends {
+                                id
+                                name
+                                email
+                                friends {
+                                    id
+                                    name
+                                    email
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
