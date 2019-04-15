@@ -44,6 +44,7 @@ describe('encoding', () => {
                     const testEncoding = testEncoder.encode(query);
 
                     expect({
+                        baselineSize: baselineEncoding.length,
                         size: testEncoding.length,
                         difference: getPercentageChange(
                             baselineEncoding.length,
@@ -51,7 +52,7 @@ describe('encoding', () => {
                         ),
                         compressedDifference: getPercentageChange(
                             zlib.gzipSync(baselineEncoding).length,
-                            testEncoding.length
+                            zlib.gzipSync(testEncoding).length
                         )
                     }).toMatchSnapshot();
                 });

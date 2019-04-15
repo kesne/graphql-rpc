@@ -6,7 +6,13 @@
   "license": "MIT",
   "dependencies": {
     "@types/graphql": "^14.2.0",
+    "bit-mask": "^1.0.2",
     "graphql": "^14.2.1",
-    "graphql-query-compress": "^1.2.1"
+    "graphql-query-compress": "^1.2.1",
+    "msgpack5": "^4.2.1",
+    "protobufjs": "^6.8.8"
+  },
+  "devDependencies": {
+    "@types/msgpack5": "^3.4.1"
   }
 }
