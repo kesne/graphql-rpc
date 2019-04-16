@@ -6,6 +6,8 @@
   "license": "MIT",
   "dependencies": {
     "@types/graphql": "^14.2.0",
+    "avro-js": "^1.8.2",
+    "avsc": "^5.4.7",
     "graphql": "^14.2.1",
     "graphql-query-compress": "^1.2.1",
     "msgpack5": "^4.2.1",
