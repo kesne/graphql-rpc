@@ -1,13 +1,24 @@
-import path from 'path';
-import protobuf from 'protobufjs';
+import avro from 'avsc';
 import { parse, GraphQLSchema, OperationDefinitionNode, FieldNode } from 'graphql';
 
 export function encode(schema: GraphQLSchema, query: string) {
-    const root = protobuf.loadSync(path.join(__dirname, 'request.proto'));
-    const Request = root.lookupType('RequestSelection');
+    const Request = avro.Type.forSchema({
+        name: 'Request',
+        type: 'record',
+        fields: [
+            {
+                name: 'type',
+                type: ['null', { name: 'Type', type: 'enum', symbols: ['QUERY', 'MUTATION', 'SUBSCRIPTION'] }],
+                default: null
+            },
+            { name: 'field', type: ['null', 'int'], default: null },
+            { name: 'fields', type: 'long' },
+            { name: 'selections', type: ['null', { type: 'array', items: ['Request'] }], default: null }
+        ]
+    });
 
     const requestDescription: any = {
-        fields: 0,
+        fields: 0
     };
 
     const parsedQuery = parse(query);
@@ -16,13 +27,13 @@ export function encode(schema: GraphQLSchema, query: string) {
 
     switch (operationDefinition.operation) {
         case 'mutation':
-            requestDescription.type = 1;
+            requestDescription.type = 'MUTATION';
             break;
         case 'subscription':
-            requestDescription.type = 2;
+            requestDescription.type = 'SUBSCRIPTION';
         case 'query':
         default:
-            // Do nothing, default is 0, which is query:
+            // requestDescription.type = 'QUERY';
             break;
     }
 
@@ -30,7 +41,7 @@ export function encode(schema: GraphQLSchema, query: string) {
         const selections = node.selectionSet!.selections;
         const schemaFields = schemaNode.getFields();
 
-        selections.forEach((selection, i) => {
+        selections.forEach(selection => {
             if (selection.kind !== 'Field') {
                 throw new Error('Only field selections are currently supported.');
             }
@@ -42,7 +53,7 @@ export function encode(schema: GraphQLSchema, query: string) {
             // Only ever has one argument right now:
             const fieldNumber = parseInt(fieldDirective.arguments[0].value.value, 10) - 1;
 
-            selectionDescription.fields |= (1 << fieldNumber)
+            selectionDescription.fields |= 1 << fieldNumber;
 
             if (selection.selectionSet) {
                 if (!selectionDescription.selections) {
@@ -79,10 +90,5 @@ export function encode(schema: GraphQLSchema, query: string) {
 
     walkSelections(requestDescription, operationDefinition as any, schema.getQueryType());
 
-    const buf =  Request.encode(Request.fromObject(requestDescription)).finish();
-
-    // @ts-ignore
-    // console.log(Request.decode(buf).selection);
-
-    return buf;
+    return Request.toBuffer(requestDescription);
 }
