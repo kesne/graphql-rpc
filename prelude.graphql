@@ -1,5 +1,5 @@
-directive @field(number: Int!) on FIELD_DEFINITION | ENUM_VALUE
-directive @reserved(numbers: [Int!]!) on OBJECT
+directive @field(id: Int!) on FIELD_DEFINITION | ENUM_VALUE | ARGUMENT_DEFINITION
+directive @reserved(ids: [Int!]!) on OBJECT
 
 # Custom Types:
 scalar Int32

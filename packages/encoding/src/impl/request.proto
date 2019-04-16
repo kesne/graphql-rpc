@@ -7,9 +7,20 @@ enum Type {
     // SUBSCRIPTION = 2;
 }
 
+message Argument {
+  uint32 arg = 1;
+  bytes value = 2;
+}
+
+message ChildSelection {
+  uint32 field = 1;
+  uint64 fields = 2;
+  repeated ChildSelection selections = 3 [packed=true];
+  repeated Argument arguments = 4 [packed=true];
+}
+
 message RequestSelection {
   Type type = 1;
-  uint32 field = 2;
-  uint64 fields = 3;
-  repeated RequestSelection selections = 4 [packed=true];
+  uint64 fields = 2;
+  repeated ChildSelection selections = 3 [packed=true];
 }

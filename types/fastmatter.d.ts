@@ -4,7 +4,7 @@ declare function index(
     string: string
 ): {
     body: string;
-    attributes: object;
+    attributes: { [key: string]: any };
 };
 
 declare namespace index {

@@ -21,9 +21,9 @@ Object {
 exports[`encoding minimal encoding query "multiple-arguments.graphql" 1`] = `
 Object {
   "baselineSize": 170,
-  "difference": "91.76%",
-  "optimizedDifference": "90.00%",
-  "size": 14,
+  "difference": "77.65%",
+  "optimizedDifference": "72.86%",
+  "size": 38,
 }
 `;
 
@@ -47,9 +47,9 @@ Object {
 
 exports[`encoding minimal encoding query "variables.graphql" 1`] = `
 Object {
-  "baselineSize": 190,
-  "difference": "92.63%",
-  "optimizedDifference": "89.31%",
-  "size": 14,
+  "baselineSize": 265,
+  "difference": "85.66%",
+  "optimizedDifference": "79.68%",
+  "size": 38,
 }
 `;

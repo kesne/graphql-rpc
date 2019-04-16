@@ -35,10 +35,8 @@ describe('encoding', () => {
 
                     const { body: query, attributes } = fastmatter(queryFile);
 
-                    console.log(attributes);
-
-                    const baselineEncoding = baselineEncoder.encode(query);
-                    const testEncoding = testEncoder.encode(query);
+                    const baselineEncoding = baselineEncoder.encode(query, attributes.variables);
+                    const testEncoding = testEncoder.encode(query, attributes.variables);
 
                     expect({
                         baselineSize: baselineEncoding.length,
