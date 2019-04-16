@@ -50,9 +50,9 @@ describe('encoding', () => {
                             baselineEncoding.length,
                             testEncoding.length
                         ),
-                        compressedDifference: getPercentageChange(
-                            zlib.gzipSync(baselineEncoding).length,
-                            zlib.gzipSync(testEncoding).length
+                        optimizedDifference: getPercentageChange(
+                            Math.min(zlib.gzipSync(baselineEncoding).length, baselineEncoding.length),
+                            Math.min(zlib.gzipSync(testEncoding).length, testEncoding.length)
                         )
                     }).toMatchSnapshot();
                 });
