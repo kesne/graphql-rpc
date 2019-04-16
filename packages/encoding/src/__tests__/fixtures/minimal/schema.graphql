@@ -4,6 +4,7 @@ directive @field(number: Int!) on FIELD_DEFINITION | ENUM_VALUE
 type Query {
     message: String! @field(number: 1)
     me: User @field(number: 2)
+    user(id: Int!, cursor: String!): User @field(number: 3)
 }
 
 type User {
@@ -11,4 +12,5 @@ type User {
     name: String! @field(number: 2)
     email: String! @field(number: 3)
     friends: [User!]! @field(number: 4)
+    description(format: String!): String! @field(number: 5)
 }

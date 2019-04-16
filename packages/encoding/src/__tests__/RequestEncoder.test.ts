@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import zlib from 'zlib';
+import fastmatter from 'fastmatter';
 import { buildSchema } from 'graphql';
 import RequestEncoder from '../RequestEncoder';
 import * as baselineImpl from '../impl/json';
@@ -22,23 +23,19 @@ describe('encoding', () => {
         const baselineEncoder = new RequestEncoder(schema, baselineImpl);
         const testEncoder = new RequestEncoder(schema);
 
-        const files = fs.readdirSync(
-            path.join(__dirname, 'fixtures', fixtureSet, 'queries')
-        );
+        const files = fs.readdirSync(path.join(__dirname, 'fixtures', fixtureSet, 'queries'));
 
         describe(fixtureSet, () => {
             files.forEach(filename => {
                 it(`encoding query "${filename}"`, () => {
-                    const query = fs.readFileSync(
-                        path.join(
-                            __dirname,
-                            'fixtures',
-                            fixtureSet,
-                            'queries',
-                            filename
-                        ),
+                    const queryFile = fs.readFileSync(
+                        path.join(__dirname, 'fixtures', fixtureSet, 'queries', filename),
                         'utf8'
                     );
+
+                    const { body: query, attributes } = fastmatter(queryFile);
+
+                    console.log(attributes);
 
                     const baselineEncoding = baselineEncoder.encode(query);
                     const testEncoding = testEncoder.encode(query);
@@ -51,7 +48,10 @@ describe('encoding', () => {
                             testEncoding.length
                         ),
                         optimizedDifference: getPercentageChange(
-                            Math.min(zlib.gzipSync(baselineEncoding).length, baselineEncoding.length),
+                            Math.min(
+                                zlib.gzipSync(baselineEncoding).length,
+                                baselineEncoding.length
+                            ),
                             Math.min(zlib.gzipSync(testEncoding).length, testEncoding.length)
                         )
                     }).toMatchSnapshot();
