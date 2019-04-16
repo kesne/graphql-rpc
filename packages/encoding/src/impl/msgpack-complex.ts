@@ -1,6 +1,5 @@
 import msgpack from 'msgpack5';
 import { parse, GraphQLSchema, OperationDefinitionNode, FieldNode, GraphQLField } from 'graphql';
-import BitMask from 'bit-mask';
 
 export function encode(schema: GraphQLSchema, query: string) {
     const parsedQuery = parse(query);
@@ -22,7 +21,7 @@ export function encode(schema: GraphQLSchema, query: string) {
             break;
     }
 
-    payload.s = { f: new BitMask(0, 2) };
+    payload.s = { f: 0 };
 
     function walkSelections(s: any, node: FieldNode, schemaNode: any) {
         const selections = node.selectionSet!.selections;
@@ -40,7 +39,7 @@ export function encode(schema: GraphQLSchema, query: string) {
             // @ts-ignore Only has one argument right now:
             const fieldNumber = parseInt(fieldDirective!.arguments[0].value.value, 10) - 1;
 
-            s.f.setBit(fieldNumber, true);
+            s.f |= (1 << fieldNumber);
 
             if (selection.selectionSet) {
                 if (!s.s) {
@@ -48,15 +47,12 @@ export function encode(schema: GraphQLSchema, query: string) {
                 }
 
                 if (!s.s[fieldNumber]) {
-                    s.s[fieldNumber] = { f: new BitMask(0, 2) };
+                    s.s[fieldNumber] = { f: 0 };
                 }
 
                 walkSelections(s.s[fieldNumber], selection, resolveType(schemaNode.getFields()[selection.name.value]));
             }
         });
-
-        // Write bitmask as a number:
-        s.f = parseInt(s.f.bits(), 2);
     }
 
     function resolveType(node: any): any {
