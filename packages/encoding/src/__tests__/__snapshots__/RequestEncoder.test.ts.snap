@@ -12,18 +12,18 @@ Object {
 exports[`encoding minimal encoding query "arguments.graphql" 1`] = `
 Object {
   "baselineSize": 77,
-  "difference": "81.82%",
-  "optimizedDifference": "81.82%",
-  "size": 14,
+  "difference": "83.12%",
+  "optimizedDifference": "83.12%",
+  "size": 13,
 }
 `;
 
 exports[`encoding minimal encoding query "multiple-arguments.graphql" 1`] = `
 Object {
   "baselineSize": 170,
-  "difference": "77.65%",
-  "optimizedDifference": "72.86%",
-  "size": 38,
+  "difference": "62.35%",
+  "optimizedDifference": "54.29%",
+  "size": 64,
 }
 `;
 
@@ -48,8 +48,8 @@ Object {
 exports[`encoding minimal encoding query "variables.graphql" 1`] = `
 Object {
   "baselineSize": 265,
-  "difference": "85.66%",
-  "optimizedDifference": "79.68%",
-  "size": 38,
+  "difference": "76.60%",
+  "optimizedDifference": "66.84%",
+  "size": 62,
 }
 `;

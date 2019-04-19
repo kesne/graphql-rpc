@@ -616,13 +616,6 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-avro-js@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/avro-js/-/avro-js-1.8.2.tgz#915d1cf4497261e76496147f3e6b9c4a6f678329"
-  integrity sha1-kV0c9ElyYedklhR/PmucSm9ngyk=
-  dependencies:
-    underscore "*"
-
 avsc@^5.4.7:
   version "5.4.7"
   resolved "https://registry.yarnpkg.com/avsc/-/avsc-5.4.7.tgz#7036f16334ba04207343d3a53896d52c7da41deb"
@@ -3662,11 +3655,6 @@ uglify-js@^3.1.4:
   dependencies:
     commander "~2.20.0"
     source-map "~0.6.1"
-
-underscore@*:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
-  integrity sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==
 
 union-value@^1.0.0:
   version "1.0.0"

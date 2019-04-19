@@ -3,8 +3,7 @@ syntax = "proto3";
 enum Type {
     QUERY = 0;
     MUTATION = 1;
-    // TODO: Add subscription support.
-    // SUBSCRIPTION = 2;
+    SUBSCRIPTION = 2;
 }
 
 message Argument {
@@ -13,7 +12,7 @@ message Argument {
 }
 
 message ChildSelection {
-  uint32 field = 1;
+  uint32 id = 1;
   uint64 fields = 2;
   repeated ChildSelection selections = 3 [packed=true];
   repeated Argument arguments = 4 [packed=true];
