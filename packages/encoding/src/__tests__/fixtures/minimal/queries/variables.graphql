@@ -1,0 +1,22 @@
+---
+variables:
+    id: 123
+    cursor: dGhpcyBpcyBhIGN1cnNvcg==
+    format: LONG
+---
+
+query($id: Int!, $cursor: String!, $format: String!) {
+    message
+    user(id: $id, cursor: $cursor) {
+        id
+        name
+        email
+        description(format: $format)
+        friends {
+            id
+            name
+            email
+            description(format: $format)
+        }
+    }
+}

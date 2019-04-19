@@ -1,0 +1,15 @@
+query {
+    message
+    user(id: 123, cursor: "dGhpcyBpcyBhIGN1cnNvcg==") {
+        id
+        name
+        email
+        description(format: "LONG")
+        friends {
+            id
+            name
+            email
+            description(format: "LONG")
+        }
+    }
+}

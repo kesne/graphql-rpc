@@ -1,14 +1,16 @@
 # TODO: Use prelude:
-directive @field(number: Int!) on FIELD_DEFINITION | ENUM_VALUE
+directive @field(id: Int!) on FIELD_DEFINITION | ENUM_VALUE | ARGUMENT_DEFINITION
 
 type Query {
-    message: String! @field(number: 1)
-    me: User @field(number: 2)
+    message: String! @field(id: 1)
+    me: User @field(id: 2)
+    user(id: Int! @field(id: 1), cursor: String! @field(id: 2)): User @field(id: 3)
 }
 
 type User {
-    id: Int! @field(number: 1)
-    name: String! @field(number: 2)
-    email: String! @field(number: 3)
-    friends: [User!]! @field(number: 4)
+    id: Int! @field(id: 1)
+    name: String! @field(id: 2)
+    email: String! @field(id: 3)
+    friends: [User!]! @field(id: 4)
+    description(format: String! @field(id: 1)): String! @field(id: 5)
 }

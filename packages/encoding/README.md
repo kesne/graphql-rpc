@@ -26,7 +26,7 @@ TODO:
 Given a schema like this:
 ```graphql
 type Query {
-    message: String! @field(number: 1)
+    message: String! @field(id: 1)
 }
 ```
 
@@ -46,13 +46,13 @@ We will encode this into the protofbuf as follows:
 Given a schema like this:
 ```graphql
 type User {
-    id: Int64! @field(number: 1)
-    name: String! @field(number: 2)
+    id: Int64! @field(id: 1)
+    name: String! @field(id: 2)
 }
 
-type Query @reserved(numbers: [2]) {
-    message: String! @field(number: 1)
-    user: User! @field(number: 3)
+type Query @reserved(ids: [2]) {
+    message: String! @field(id: 1)
+    user: User! @field(id: 3)
 }
 ```
 

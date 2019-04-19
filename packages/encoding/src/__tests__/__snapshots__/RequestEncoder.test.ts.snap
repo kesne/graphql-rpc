@@ -9,6 +9,24 @@ Object {
 }
 `;
 
+exports[`encoding minimal encoding query "arguments.graphql" 1`] = `
+Object {
+  "baselineSize": 77,
+  "difference": "81.82%",
+  "optimizedDifference": "81.82%",
+  "size": 14,
+}
+`;
+
+exports[`encoding minimal encoding query "multiple-arguments.graphql" 1`] = `
+Object {
+  "baselineSize": 170,
+  "difference": "77.65%",
+  "optimizedDifference": "72.86%",
+  "size": 38,
+}
+`;
+
 exports[`encoding minimal encoding query "nested.graphql" 1`] = `
 Object {
   "baselineSize": 205,
@@ -24,5 +42,14 @@ Object {
   "difference": "96.15%",
   "optimizedDifference": "96.15%",
   "size": 1,
+}
+`;
+
+exports[`encoding minimal encoding query "variables.graphql" 1`] = `
+Object {
+  "baselineSize": 265,
+  "difference": "85.66%",
+  "optimizedDifference": "79.68%",
+  "size": 38,
 }
 `;
