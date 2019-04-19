@@ -79,7 +79,9 @@ export function encode(schema: GraphQLSchema, query: string) {
 
     walkSelections(requestDescription, operationDefinition as any, schema.getQueryType());
 
-    const buf =  Request.encode(Request.fromObject(requestDescription)).finish();
+    console.log(requestDescription);
+
+    const buf = Request.encode(Request.fromObject(requestDescription)).finish();
 
     // @ts-ignore
     // console.log(Request.decode(buf).selection);
