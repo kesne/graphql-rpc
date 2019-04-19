@@ -7,6 +7,7 @@
         "strict": true,
         "lib": ["esnext"],
         "moduleResolution": "node",
-        "outDir": "lib"
+        "outDir": "lib",
+        "downlevelIteration": true
     }
 }

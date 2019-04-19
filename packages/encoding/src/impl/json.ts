@@ -1,12 +1,13 @@
 import { GraphQLSchema } from 'graphql';
 import compress from 'graphql-query-compress';
+import { Variables } from '../types';
 
 type RequestBody = {
     query: string;
     variables?: any;
 };
 
-export function encode(_schema: GraphQLSchema, query: string, variables?: any) {
+export function encode(_schema: GraphQLSchema, query: string, variables: Variables) {
     const obj: RequestBody = {
         query: compress(query)
     };
