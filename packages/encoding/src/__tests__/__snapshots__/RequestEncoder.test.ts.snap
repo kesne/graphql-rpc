@@ -3,26 +3,26 @@
 exports[`encoding minimal encoding query "all.graphql" 1`] = `
 Object {
   "baselineSize": 67,
-  "difference": "79.10%",
-  "optimizedDifference": "79.10%",
-  "size": 14,
+  "difference": "92.54%",
+  "optimizedDifference": "92.54%",
+  "size": 5,
 }
 `;
 
 exports[`encoding minimal encoding query "nested.graphql" 1`] = `
 Object {
   "baselineSize": 205,
-  "difference": "75.61%",
-  "optimizedDifference": "28.57%",
-  "size": 50,
+  "difference": "91.71%",
+  "optimizedDifference": "75.71%",
+  "size": 17,
 }
 `;
 
 exports[`encoding minimal encoding query "one.graphql" 1`] = `
 Object {
   "baselineSize": 26,
-  "difference": "92.31%",
-  "optimizedDifference": "92.31%",
-  "size": 2,
+  "difference": "96.15%",
+  "optimizedDifference": "96.15%",
+  "size": 1,
 }
 `;
