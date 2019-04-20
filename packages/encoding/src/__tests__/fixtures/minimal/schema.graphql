@@ -1,16 +1,31 @@
 # TODO: Use prelude:
 directive @field(id: Int!) on FIELD_DEFINITION | ENUM_VALUE | ARGUMENT_DEFINITION
 
+# NOTE: Uncomment to use directive-based numbering:
+# type Query {
+#     message: String! @field(id: 1)
+#     me: User @field(id: 2)
+#     user(id: Int! @field(id: 1), cursor: String! @field(id: 2)): User @field(id: 3)
+# }
+
+# type User {
+#     id: Int! @field(id: 1)
+#     name: String! @field(id: 2)
+#     email: String! @field(id: 3)
+#     friends: [User!]! @field(id: 4)
+#     description(format: String! @field(id: 1)): String! @field(id: 5)
+# }
+
 type Query {
-    message: String! @field(id: 1)
-    me: User @field(id: 2)
-    user(id: Int! @field(id: 1), cursor: String! @field(id: 2)): User @field(id: 3)
+    message: String!
+    me: User
+    user(id: Int!, cursor: String!): User
 }
 
 type User {
-    id: Int! @field(id: 1)
-    name: String! @field(id: 2)
-    email: String! @field(id: 3)
-    friends: [User!]! @field(id: 4)
-    description(format: String! @field(id: 1)): String! @field(id: 5)
+    id: Int!
+    name: String!
+    email: String!
+    friends: [User!]!
+    description(format: String!): String!
 }
