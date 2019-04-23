@@ -1,0 +1,11 @@
+{
+    "name": "@graphql-rpc/server",
+    "version": "0.0.0",
+    "main": "lib/index.js",
+    "author": "Jordan Gensler <jordangens@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "fastify": "^2.3.0"
+    },
+    "devDependencies": {}
+}
