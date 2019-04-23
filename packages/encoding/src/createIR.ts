@@ -42,19 +42,20 @@ function resolveType(node: any): any {
     return node;
 }
 
-function getFieldNumber(node: FieldNode | InputValueDefinitionNode) {
-    if (!node.directives) {
-        throw new Error(`No directives found on node ${node.name.value}`);
-    }
+// NOTE: Uncomment to use directive-based numbering:
+// function getFieldNumber(node: FieldNode | InputValueDefinitionNode) {
+    // if (!node.directives) {
+    //     throw new Error(`No directives found on node ${node.name.value}`);
+    // }
 
-    const fieldDirective = node.directives.find(dir => dir.name.value === 'field');
-    if (!fieldDirective) {
-        throw new Error(`No "field" directive found on node ${node.name.value}`);
-    }
+    // const fieldDirective = node.directives.find(dir => dir.name.value === 'field');
+    // if (!fieldDirective) {
+    //     throw new Error(`No "field" directive found on node ${node.name.value}`);
+    // }
 
-    // @ts-ignore Only ever has one argument right now:
-    return parseInt(fieldDirective.arguments[0].value.value, 10) - 1;
-}
+    // // @ts-ignore Only ever has one argument right now:
+    // return parseInt(fieldDirective.arguments[0].value.value, 10) - 1;
+// }
 
 function getArgumentValue(argument: ArgumentNode, variables?: Variables) {
     const resolvedValue =
@@ -73,8 +74,10 @@ function walkSelections(ir: ChildIR, node: FieldNode, schemaNode: any, variables
         ir.arguments = ir.arguments || [];
 
         for (const argument of node.arguments) {
-            const argNode = schemaNode.args.find((arg: any) => arg.name === argument.name.value);
-            const argNumber = getFieldNumber(argNode.astNode);
+            const argNumber = schemaNode.args.findIndex((arg: any) => arg.name === argument.name.value);
+            // NOTE: Uncomment to use directive-based numbering:
+            // const argNode = schemaNode.args.find((arg: any) => arg.name === argument.name.value);
+            // const argNumber = getFieldNumber(argNode.astNode);
 
             ir.arguments.push({
                 arg: argNumber,
@@ -91,7 +94,9 @@ function walkSelections(ir: ChildIR, node: FieldNode, schemaNode: any, variables
             }
 
             const fieldNode = schemaFields[selection.name.value];
-            const fieldNumber = getFieldNumber(fieldNode.astNode);
+            const fieldNumber = Object.keys(schemaFields).findIndex((field) => field === selection.name.value);
+            // NOTE: Uncomment to use directive-based numbering:
+            // const fieldNumber = getFieldNumber(fieldNode.astNode);
 
             ir.fields |= 1 << fieldNumber;
 
