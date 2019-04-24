@@ -1,1 +1,3 @@
-import fastify from 'fastify';
+import Server from './Server';
+
+export { Server };

@@ -1,16 +1,16 @@
 import msgpack from 'msgpack5';
 import { GraphQLSchema } from 'graphql';
-import createIR, { IR } from '../createIR';
+import createIR, { IR, ChildIR, ArgumentIR } from '../ir/create';
 import { Variables } from '../types';
 
-function optimizeIR(ir: IR) {
+function optimizeIR(ir: IR | ChildIR | ArgumentIR) {
     let optimized: any = ir;
 
-    if (ir.selections) {
+    if ('selections' in ir && ir.selections) {
         ir.selections.forEach(selection => optimizeIR(selection));
     }
 
-    if (ir.arguments) {
+    if ('arguments' in ir && ir.arguments) {
         ir.arguments.forEach(arg => optimizeIR(arg));
     }
 

@@ -35,8 +35,17 @@ describe('encoding', () => {
 
                     const { body: query, attributes } = fastmatter(queryFile);
 
-                    const baselineEncoding = baselineEncoder.encode(query, attributes.variables);
-                    const testEncoding = testEncoder.encode(query, attributes.variables);
+                    const request = {
+                        query,
+                        variables: attributes.variables
+                    };
+
+                    const baselineEncoding = baselineEncoder.encode(request);
+                    const testEncoding = testEncoder.encode(request);
+
+                    // Verify the encoding
+                    const decodedTest = testEncoder.decode(Buffer.from(testEncoding));
+                    expect(decodedTest).toEqual(request);
 
                     expect({
                         baselineSize: baselineEncoding.length,

@@ -1,30 +1,5 @@
-import {
-    GraphQLSchema,
-    parse,
-    FieldNode,
-    InputValueDefinitionNode,
-    ArgumentNode,
-    OperationDefinitionNode
-} from 'graphql';
-import { Variables } from './types';
-
-export type ArgumentIR = {
-    arg: number;
-    value: Buffer | null;
-};
-
-export type ChildIR = {
-    id: number;
-    fields: number;
-    arguments?: ArgumentIR[];
-    selections?: ChildIR[];
-};
-
-export type IR<Type = any> = {
-    type: Type;
-    fields: number;
-    selections?: ChildIR[];
-};
+import { GraphQLSchema, parse, FieldNode, ArgumentNode, OperationDefinitionNode } from 'graphql';
+import { Variables, ChildIR, RootIR } from '../types';
 
 function resolveType(node: any): any {
     if (node.ofType) {
@@ -44,17 +19,17 @@ function resolveType(node: any): any {
 
 // NOTE: Uncomment to use directive-based numbering:
 // function getFieldNumber(node: FieldNode | InputValueDefinitionNode) {
-    // if (!node.directives) {
-    //     throw new Error(`No directives found on node ${node.name.value}`);
-    // }
+// if (!node.directives) {
+//     throw new Error(`No directives found on node ${node.name.value}`);
+// }
 
-    // const fieldDirective = node.directives.find(dir => dir.name.value === 'field');
-    // if (!fieldDirective) {
-    //     throw new Error(`No "field" directive found on node ${node.name.value}`);
-    // }
+// const fieldDirective = node.directives.find(dir => dir.name.value === 'field');
+// if (!fieldDirective) {
+//     throw new Error(`No "field" directive found on node ${node.name.value}`);
+// }
 
-    // // @ts-ignore Only ever has one argument right now:
-    // return parseInt(fieldDirective.arguments[0].value.value, 10) - 1;
+// // @ts-ignore Only ever has one argument right now:
+// return parseInt(fieldDirective.arguments[0].value.value, 10) - 1;
 // }
 
 function getArgumentValue(argument: ArgumentNode, variables?: Variables) {
@@ -74,7 +49,9 @@ function walkSelections(ir: ChildIR, node: FieldNode, schemaNode: any, variables
         ir.arguments = ir.arguments || [];
 
         for (const argument of node.arguments) {
-            const argNumber = schemaNode.args.findIndex((arg: any) => arg.name === argument.name.value);
+            const argNumber = schemaNode.args.findIndex(
+                (arg: any) => arg.name === argument.name.value
+            );
             // NOTE: Uncomment to use directive-based numbering:
             // const argNode = schemaNode.args.find((arg: any) => arg.name === argument.name.value);
             // const argNumber = getFieldNumber(argNode.astNode);
@@ -94,7 +71,9 @@ function walkSelections(ir: ChildIR, node: FieldNode, schemaNode: any, variables
             }
 
             const fieldNode = schemaFields[selection.name.value];
-            const fieldNumber = Object.keys(schemaFields).findIndex((field) => field === selection.name.value);
+            const fieldNumber = Object.keys(schemaFields).findIndex(
+                field => field === selection.name.value
+            );
             // NOTE: Uncomment to use directive-based numbering:
             // const fieldNumber = getFieldNumber(fieldNode.astNode);
 
@@ -113,18 +92,18 @@ function walkSelections(ir: ChildIR, node: FieldNode, schemaNode: any, variables
     }
 }
 
-export default function createIR<Type>(
+export default function create<Type>(
     schema: GraphQLSchema,
     query: string,
     variables: Variables,
     builder: {
         getType(type: 'mutation' | 'subscription' | 'query'): Type;
     }
-): IR<Type> {
+): RootIR<Type> {
     const parsedQuery = parse(query);
     const operationDefinition = parsedQuery.definitions[0] as OperationDefinitionNode;
 
-    const root: IR<Type> = {
+    const root: RootIR<Type> = {
         type: builder.getType(operationDefinition.operation),
         fields: 0
     };

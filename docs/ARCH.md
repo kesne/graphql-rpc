@@ -13,9 +13,9 @@ The schema prelude is a piece of the GraphQL schema that is automatically includ
 
 ## Formats
 
-We will use the `Content-Type` to determine if the incoming request is a binary-encoded buffer, or a JSON-encoded request. Requests with `Content-Type` set to `application/x-graphql-rpc` will be processed as a binary request.
+We will use the `Content-Type` to determine if the incoming request is a binary-encoded buffer, or a JSON-encoded request. Requests with `Content-Type` set to `application/graphql-rpc` will be processed as a binary request.
 
-The `Accept` header will be used to determine how to format the response. If the header is set to `application/x-graphql-rpc`, the binary format will be used. Otherwise, it will format the response as JSON.
+The `Accept` header will be used to determine how to format the response. If the header is set to `application/graphql-rpc`, the binary format will be used. Otherwise, it will format the response as JSON.
 
 ## Smart Clients
 

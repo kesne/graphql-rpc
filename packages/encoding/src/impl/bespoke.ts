@@ -1,6 +1,6 @@
 import varint from 'varint';
 import { GraphQLSchema } from 'graphql';
-import createIR, { IR, ChildIR } from '../createIR';
+import createIR, { IR, ChildIR } from '../ir/create';
 import { Variables } from '../types';
 
 // NOTE: Even though we never use 0, we still reserve it and don't use it for mutations to make it side-effect-free to zero-fill the buffer.

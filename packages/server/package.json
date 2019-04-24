@@ -5,7 +5,12 @@
     "author": "Jordan Gensler <jordangens@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "fastify": "^2.3.0"
+        "@graphql-rpc/encoding": "^0.0.0",
+        "@types/pino": "^5.8.6",
+        "fastify": "^2.3.0",
+        "graphql": "^14.2.1",
+        "graphql-playground-html": "^1.6.13",
+        "graphql-tools": "^4.0.4"
     },
     "devDependencies": {}
 }

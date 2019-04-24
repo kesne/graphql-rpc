@@ -1,11 +1,20 @@
 import { GraphQLSchema } from "graphql";
-import * as impl from './impl/bespoke';
+import * as impl from './impl/proto';
 import { Variables } from "./types";
+
+interface Request {
+    query: string;
+    variables: Variables;
+};
 
 export default class RequestEncoder {
     constructor(private schema: GraphQLSchema, private implementation = impl) {}
 
-    encode(query: string, variables: Variables): Buffer | Uint8Array {
-        return this.implementation.encode(this.schema, query, variables);
+    encode(request: Request): Buffer | Uint8Array {
+        return this.implementation.encode(this.schema, request.query, request.variables);
+    }
+
+    decode(data: Buffer): Request {
+        return this.implementation.decode(this.schema, data);
     }
 }

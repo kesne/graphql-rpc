@@ -5,7 +5,7 @@
         "module": "esnext",
         "esModuleInterop": true,
         "strict": true,
-        "lib": ["esnext"],
+        "lib": ["esnext", "dom"],
         "moduleResolution": "node",
         "outDir": "lib",
         "downlevelIteration": true

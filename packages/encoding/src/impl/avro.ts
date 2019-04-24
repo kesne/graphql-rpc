@@ -1,6 +1,6 @@
 import avro from 'avsc';
 import { GraphQLSchema } from 'graphql';
-import createIR from '../createIR';
+import createIR from '../ir/create';
 import { Variables } from '../types';
 
 export function encode(schema: GraphQLSchema, query: string, variables: Variables) {

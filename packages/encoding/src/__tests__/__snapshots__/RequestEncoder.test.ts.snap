@@ -3,53 +3,53 @@
 exports[`encoding minimal encoding query "all.graphql" 1`] = `
 Object {
   "baselineSize": 67,
-  "difference": "92.54%",
-  "optimizedDifference": "92.54%",
-  "size": 5,
+  "difference": "79.10%",
+  "optimizedDifference": "79.10%",
+  "size": 14,
 }
 `;
 
 exports[`encoding minimal encoding query "arguments.graphql" 1`] = `
 Object {
   "baselineSize": 77,
-  "difference": "83.12%",
-  "optimizedDifference": "83.12%",
-  "size": 13,
+  "difference": "67.53%",
+  "optimizedDifference": "67.53%",
+  "size": 25,
 }
 `;
 
 exports[`encoding minimal encoding query "multiple-arguments.graphql" 1`] = `
 Object {
   "baselineSize": 170,
-  "difference": "62.35%",
-  "optimizedDifference": "54.29%",
-  "size": 64,
+  "difference": "45.29%",
+  "optimizedDifference": "33.57%",
+  "size": 93,
 }
 `;
 
 exports[`encoding minimal encoding query "nested.graphql" 1`] = `
 Object {
   "baselineSize": 205,
-  "difference": "91.71%",
-  "optimizedDifference": "75.71%",
-  "size": 17,
+  "difference": "75.61%",
+  "optimizedDifference": "28.57%",
+  "size": 50,
 }
 `;
 
 exports[`encoding minimal encoding query "one.graphql" 1`] = `
 Object {
   "baselineSize": 26,
-  "difference": "96.15%",
-  "optimizedDifference": "96.15%",
-  "size": 1,
+  "difference": "92.31%",
+  "optimizedDifference": "92.31%",
+  "size": 2,
 }
 `;
 
 exports[`encoding minimal encoding query "variables.graphql" 1`] = `
 Object {
   "baselineSize": 265,
-  "difference": "76.60%",
-  "optimizedDifference": "66.84%",
-  "size": 62,
+  "difference": "65.66%",
+  "optimizedDifference": "51.34%",
+  "size": 91,
 }
 `;
