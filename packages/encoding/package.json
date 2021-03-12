@@ -10,7 +10,7 @@
     "fastmatter": "^2.1.1",
     "graphql": "^14.2.1",
     "graphql-query-compress": "^1.2.1",
-    "msgpack5": "^4.2.1",
+    "msgpack5": "^4.5.1",
     "protobufjs": "^6.8.8",
     "varint": "^5.0.0"
   },
